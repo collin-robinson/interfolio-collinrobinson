@@ -1,0 +1,32 @@
+<!-- article detail -->
+<div *ngIf="selectedArticle" class="bg-white mx-auto max-w-2xl my-8">
+    <div class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl px-4 py-5">
+        <h3 class="text-base font-semibold leading-6 text-gray-900">{{selectedArticle.title}}</h3>
+        <p class="mt-1 text-sm text-gray-500">{{selectedArticle.DOI}}</p>
+    </div>
+</div>
+
+<!-- articles list -->
+<div class="mx-auto max-w-2xl my-8">
+    <ul role="list" class="divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+      <li  *ngFor="let article of articles" class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
+        <button type="button" (click)="onSelect(article)" class="text-left">
+        <div class="flex gap-x-4">
+          <div class="min-w-0 flex-auto">
+            <p class="text-sm font-semibold leading-6 text-gray-900">
+              <a href="#">
+                <span class="absolute inset-x-0 -top-px bottom-0"></span>
+                {{article.title}}
+              </a>
+            </p>
+            <p class="mt-1 flex text-xs leading-5 text-gray-500">
+              <span class="relative truncate hover:underline">{{article.DOI}}</span>
+            </p>
+          </div>
+        </div>
+        </button>
+      </li>
+      
+    </ul>
+    </div>
+  
