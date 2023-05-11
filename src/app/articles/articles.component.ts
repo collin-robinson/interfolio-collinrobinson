@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Article } from '../article';
-import { ARTICLES } from '../mock-articles';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-articles',
@@ -8,16 +8,23 @@ import { ARTICLES } from '../mock-articles';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent {
-  articles = ARTICLES;
 
-  selectedArticle?: Article;
-  onSelect(article: Article): void {
-    this.selectedArticle = article;
+  constructor(private articleService: ArticleService) {}
+
+  articles: Article[] = [];
+
+  getArticles(): void {
+    this.articleService.getArticles()
+    .subscribe(articles => this.articles = articles);
+  }
+
+  ngOnInit(): void {
+    this.getArticles();
   }
 
 }
 
-
+//https://api.crossref.org/works?filter=has-full-text:true&mailto=collin@soniche.com
 // {
 //   "status": "ok",
 //   "message-type": "work-list",
